@@ -1,0 +1,90 @@
+﻿[
+  {
+    "id": "BN-LON-STD-001",
+    "destination": "London",
+    "room_type": "standard",
+    "price_per_night": 75.00,
+    "cancellation": "Flexible",
+    "available": true
+  },
+  {
+    "id": "BN-LON-STD-002",
+    "destination": "London",
+    "room_type": "standard",
+    "price_per_night": 65.00,
+    "cancellation": "Flexible",
+    "available": false
+  },
+  {
+    "id": "BN-LON-DLX-001",
+    "destination": "London",
+    "room_type": "deluxe",
+    "price_per_night": 110.00,
+    "cancellation": "NonRefundable",
+    "available": true
+  },
+  {
+    "id": "BN-MAN-STD-001",
+    "destination": "Manchester",
+    "room_type": "standard",
+    "price_per_night": 60.00,
+    "cancellation": "NonRefundable",
+    "available": true
+  },
+  {
+    "id": "BN-MAN-STD-002",
+    "destination": "Manchester",
+    "room_type": "standard",
+    "price_per_night": 55.00,
+    "cancellation": "Flexible",
+    "available": false
+  },
+  {
+    "id": "BN-PAR-STD-001",
+    "destination": "Paris",
+    "room_type": "standard",
+    "price_per_night": 90.00,
+    "cancellation": "Flexible",
+    "available": true
+  },
+  {
+    "id": "BN-PAR-DLX-001",
+    "destination": "Paris",
+    "room_type": "deluxe",
+    "price_per_night": 135.00,
+    "cancellation": "NonRefundable",
+    "available": true
+  },
+  {
+    "id": "BN-PAR-STD-002",
+    "destination": "Paris",
+    "room_type": "standard",
+    "price_per_night": 80.00,
+    "cancellation": "Flexible",
+    "available": false
+  },
+  {
+    "id": "BN-NYC-STD-001",
+    "destination": "New York",
+    "room_type": "standard",
+    "price_per_night": 115.00,
+    "cancellation": "Flexible",
+    "available": false
+  },
+  {
+    "id": "BN-NYC-STD-002",
+    "destination": "New York",
+    "room_type": "standard",
+    "price_per_night": 125.00,
+    "cancellation": "NonRefundable",
+    "available": false
+  },
+  {
+    "id": "BN-TOK-STD-001",
+    "destination": "Tokyo",
+    "room_type": "standard",
+    "price_per_night": 80.00,
+    "cancellation": "Flexible",
+    "available": false
+  }
+]

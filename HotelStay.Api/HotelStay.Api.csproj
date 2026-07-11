@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>HotelStay.Api</RootNamespace>
+        <InvariantGlobalization>true</InvariantGlobalization>
+    </PropertyGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Providers\PremierStays\stub-data\rooms.json">
+            <LogicalName>premierstays.rooms.json</LogicalName>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Providers\BudgetNests\stub-data\rooms.json">
+            <LogicalName>budgetnests.rooms.json</LogicalName>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Data\cities.json">
+            <LogicalName>cities.json</LogicalName>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="HotelStay.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+﻿[
+  { "name": "London", "class": "Domestic" },
+  { "name": "Manchester", "class": "Domestic" },
+  { "name": "Paris", "class": "International" },
+  { "name": "New York", "class": "International" },
+  { "name": "Tokyo", "class": "International" }
+]

@@ -1,0 +1,101 @@
+﻿[
+  {
+    "Id": "PS-LON-STD-001",
+    "Destination": "London",
+    "RoomType": "Standard",
+    "PricePerNight": 120.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Breakfast"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-LON-DLX-001",
+    "Destination": "London",
+    "RoomType": "Deluxe",
+    "PricePerNight": 180.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Breakfast", "Bar"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-LON-STE-001",
+    "Destination": "London",
+    "RoomType": "Suite",
+    "PricePerNight": 320.00,
+    "Cancellation": "NonRefundable",
+    "Amenities": ["WiFi", "Breakfast", "Bar", "Balcony"],
+    "StarRating": 5
+  },
+  {
+    "Id": "PS-MAN-STD-001",
+    "Destination": "Manchester",
+    "RoomType": "Standard",
+    "PricePerNight": 95.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi"],
+    "StarRating": 3
+  },
+  {
+    "Id": "PS-PAR-STD-001",
+    "Destination": "Paris",
+    "RoomType": "Standard",
+    "PricePerNight": 140.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Breakfast"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-PAR-DLX-001",
+    "Destination": "Paris",
+    "RoomType": "Deluxe",
+    "PricePerNight": 210.00,
+    "Cancellation": "NonRefundable",
+    "Amenities": ["WiFi", "Breakfast", "Bar"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-NYC-STD-001",
+    "Destination": "New York",
+    "RoomType": "Standard",
+    "PricePerNight": 180.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Gym"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-NYC-DLX-001",
+    "Destination": "New York",
+    "RoomType": "Deluxe",
+    "PricePerNight": 260.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Gym", "Bar"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-NYC-STE-001",
+    "Destination": "New York",
+    "RoomType": "Suite",
+    "PricePerNight": 420.00,
+    "Cancellation": "NonRefundable",
+    "Amenities": ["WiFi", "Gym", "Bar", "City View"],
+    "StarRating": 5
+  },
+  {
+    "Id": "PS-TOK-STD-001",
+    "Destination": "Tokyo",
+    "RoomType": "Standard",
+    "PricePerNight": 130.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Breakfast"],
+    "StarRating": 4
+  },
+  {
+    "Id": "PS-TOK-DLX-001",
+    "Destination": "Tokyo",
+    "RoomType": "Deluxe",
+    "PricePerNight": 200.00,
+    "Cancellation": "FreeCancellation",
+    "Amenities": ["WiFi", "Breakfast", "Onsen"],
+    "StarRating": 4
+  }
+]

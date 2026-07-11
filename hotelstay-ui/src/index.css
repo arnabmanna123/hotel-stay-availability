@@ -1,0 +1,464 @@
+﻿:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --border: #e2e5ec;
+  --border-strong: #cad0da;
+  --text: #1d2536;
+  --text-muted: #66708a;
+  --primary: #2f5bd4;
+  --primary-hover: #2649b0;
+  --primary-fg: #ffffff;
+  --danger-bg: #fff2f2;
+  --danger-border: #f2b4b4;
+  --danger-text: #8a1c1c;
+  --warn-text: #a45a00;
+  --ps-bg: #efeaff;
+  --ps-fg: #4a2fbb;
+  --bn-bg: #e5f5ea;
+  --bn-fg: #1f6a3a;
+  --type-bg: #eef1f7;
+  --type-fg: #2a3554;
+  --star: #d29b1c;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 12px rgba(15, 23, 42, 0.04);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light;
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.app__head {
+  margin-bottom: 24px;
+}
+
+.app__head h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.4px;
+  color: var(--text);
+}
+
+.app__sub {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.banner {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.banner--error {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  color: var(--danger-text);
+}
+
+/* -- Search form -------------------------------------------------- */
+.search-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 140px 140px 140px auto;
+  gap: 12px;
+  align-items: end;
+}
+
+@media (max-width: 780px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.search-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: var(--text-muted);
+  gap: 6px;
+}
+
+.search-form input,
+.search-form select,
+.reserve__form input,
+.reserve__form select {
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.search-form input:focus,
+.search-form select:focus,
+.reserve__form input:focus,
+.reserve__form select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+button {
+  cursor: pointer;
+  padding: 9px 18px;
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-fg);
+  font: inherit;
+  font-weight: 600;
+  transition: background 120ms ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button.link {
+  background: transparent;
+  color: var(--primary);
+  border: none;
+  padding: 4px 0;
+  font-weight: 500;
+}
+
+button.link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.inline-warn {
+  color: var(--warn-text);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+/* -- Results ------------------------------------------------------ */
+.results__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 16px 0 12px;
+}
+
+.results__head h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sort {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.sort select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  font: inherit;
+}
+
+.results__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.room-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+}
+
+.room-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge--premierstays {
+  background: var(--ps-bg);
+  color: var(--ps-fg);
+}
+
+.badge--budgetnests {
+  background: var(--bn-bg);
+  color: var(--bn-fg);
+}
+
+.badge--type {
+  background: var(--type-bg);
+  color: var(--type-fg);
+}
+
+.stars {
+  color: var(--star);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.stars__empty {
+  color: #d8dae2;
+}
+
+.amenities {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 8px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.amenities li {
+  font-size: 12px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.policy {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 6px 0;
+}
+
+.room-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+}
+
+.per-night {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.per-night small, .total small {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.empty-state {
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* -- Reserve ----------------------------------------------------- */
+.reserve, .confirmation {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.reserve__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.reserve__head h2, .confirmation h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 0 0 16px;
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.summary dt {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.summary dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.summary dd.total {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.reserve__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reserve__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.doc-type {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.doc-type legend {
+  padding: 0 6px;
+  color: var(--text-muted);
+}
+
+.doc-type label {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  margin: 4px 0;
+}
+
+.doc-type .hint {
+  color: var(--warn-text);
+  font-size: 12px;
+}
+
+.reserve__form>button[type='submit'] {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+/* -- Confirmation ----------------------------------------------- */
+.confirmation .reference {
+  margin: 4px 0 16px;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.confirmation .reference strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.confirmation>button {
+  margin-top: 4px;
+}
+
+/* -- Lookup ------------------------------------------------------ */
+.lookup {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.lookup__title {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.lookup__form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lookup__input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font: inherit;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: var(--text);
+  background: var(--surface);
+  letter-spacing: 1px;
+}
+
+.lookup__input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
