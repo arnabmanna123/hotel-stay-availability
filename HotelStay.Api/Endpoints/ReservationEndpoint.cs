@@ -56,7 +56,7 @@ public static class ReservationEndpoint
             if (body.DocumentType is null)
                 return Results.BadRequest(new ApiError(
                     "documentType is required (Passport or NationalId)",
-                    ErrorCodes.DocumentNumberRequired));
+                    ErrorCodes.DocumentTypeRequired));
 
             var city = cities.Find(body.Destination);
             if (city is null)
@@ -96,7 +96,13 @@ public static class ReservationEndpoint
                 DocumentType: body.DocumentType.Value,
                 DocumentNumber: body.DocumentNumber!);
 
-            store.Save(reservation);
+            if (!store.TrySave(reservation))
+            {
+                return Results.Conflict(new ApiError(
+                    "A reservation with the same reference already exists.",
+                    ErrorCodes.ValidationFailure));
+            }
+
             return Results.Ok(reservation);
         });
 

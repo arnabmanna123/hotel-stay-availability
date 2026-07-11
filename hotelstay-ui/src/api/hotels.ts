@@ -28,8 +28,14 @@ async function parseOrThrow<T>(response: Response): Promise<T> {
   } catch {
     // response wasn't JSON — fall through to generic message
   }
+
+  const message = body?.error
+    ?? (response.status >= 500
+      ? 'Server error, please try again later.'
+      : `Request failed with status ${response.status}`)
+
   throw new HotelApiError(
-    body?.error ?? `Request failed with status ${response.status}`,
+    message,
     body?.code ?? 'unknown_error',
     response.status,
   )

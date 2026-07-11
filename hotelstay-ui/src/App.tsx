@@ -21,6 +21,14 @@ interface SearchArgs {
   roomType: RoomType | null
 }
 
+function userFacingError(error: unknown, fallback: string): string {
+  if (error instanceof HotelApiError) {
+    return error.status >= 500 ? 'Server error, please try again later.' : error.message
+  }
+
+  return fallback
+}
+
 function App() {
   const [cities, setCities] = useState<CityInfo[]>([])
   const [citiesError, setCitiesError] = useState<string | null>(null)
@@ -46,8 +54,7 @@ function App() {
       const response = await searchRooms(args)
       setMode({ kind: 'results', response, searchArgs: args })
     } catch (e: unknown) {
-      const msg = e instanceof HotelApiError ? e.message : 'Search failed'
-      setError(msg)
+      setError(userFacingError(e, 'Search failed'))
       setMode({ kind: 'idle' })
     }
   }
@@ -59,8 +66,7 @@ function App() {
       const reservation = await fetchReservation(reference)
       setMode({ kind: 'confirmed', reservation })
     } catch (e: unknown) {
-      const msg = e instanceof HotelApiError ? e.message : 'Reservation lookup failed'
-      setError(msg)
+      setError(userFacingError(e, 'Reservation lookup failed'))
     } finally {
       setLookingUp(false)
     }
@@ -98,8 +104,7 @@ function App() {
       })
       setMode({ kind: 'confirmed', reservation })
     } catch (e: unknown) {
-      const msg = e instanceof HotelApiError ? e.message : 'Reservation failed'
-      setError(msg)
+      setError(userFacingError(e, 'Reservation failed'))
       setMode({ ...mode, submitting: false })
     }
   }

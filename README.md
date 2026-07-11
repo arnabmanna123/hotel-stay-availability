@@ -27,7 +27,7 @@ Then in the browser: pick a destination, dates, click **Search**, click **Reserv
 
 ## Prerequisites
 
-- **.NET SDK 8.0 or later.** The project files target `net10.0` because that's what was available on the dev machine (the brief permits `.NET 8+`). To target `.NET 8.0` instead, change the `<TargetFramework>` in both `.csproj` files and delete `bin/` / `obj/` before rebuilding.
+- **.NET SDK 8.0 or later.** The project files target `net8.0`. If you need to update the target, change the `<TargetFramework>` in both `.csproj` files and delete `bin/` / `obj/` before rebuilding.
 - **Node.js 20 LTS or later.** `hotelstay-ui` was scaffolded with Vite 8.
 - No database, no message broker, no external hotel APIs — everything runs offline.
 
@@ -79,7 +79,7 @@ hotel-stay/
 
 Called out in more depth in [`reflection.md`](reflection.md), but the load-bearing ones:
 
-- **In-memory reservations.** No persistence — restarting the API loses all bookings. Real deployments need Postgres or DynamoDB behind `IReservationStore`.
+- **Reservation persistence.** Reservations are persisted to `reservations.json` in the API directory, so they survive process restarts on the same machine. Real deployments still need a proper database behind `IReservationStore`.
 - **Single currency (USD).** Both stub providers report in USD. A real integration would need FX at aggregation time.
 - **Domestic accepts Passport too.** The permissive reading of the brief (spec §5.1); the strict alternative is a one-line change in `DocumentValidator`.
 - **No FE tests.** Deliberately out of scope for the time budget. A Playwright smoke test of the golden path is the first thing I'd add.

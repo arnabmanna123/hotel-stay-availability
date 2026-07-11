@@ -129,7 +129,7 @@ export function ReserveForm({
           />
         </label>
 
-        {docError && !nameEmpty && <p className="inline-warn">{docError}</p>}
+        {docError && <p className="inline-warn">{docError}</p>}
 
         <button type="submit" disabled={!canSubmit}>
           {disabled ? 'Confirming…' : 'Confirm reservation'}

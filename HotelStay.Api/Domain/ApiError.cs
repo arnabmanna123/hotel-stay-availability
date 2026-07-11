@@ -17,6 +17,7 @@ public static class ErrorCodes
     public const string UnknownProvider = "unknown_provider";
     public const string DocumentRequiredPassport = "document_required_passport";
     public const string DocumentNumberRequired = "document_number_required";
+    public const string DocumentTypeRequired = "document_type_required";
     public const string GuestNameRequired = "guest_name_required";
     public const string ReservationNotFound = "reservation_not_found";
 }
