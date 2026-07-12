@@ -23,10 +23,12 @@ public class ReserveEndpointTests : IClassFixture<ApiFixture>
     };
 
     [Fact]
-    public async Task Returns_200_and_reservation_for_valid_domestic_request()
+    public async Task Returns_201_and_reservation_for_valid_domestic_request()
     {
         var response = await _client.PostAsJsonAsync("/hotels/reserve", HappyDomesticRequest());
-        response.EnsureSuccessStatusCode();
+
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        Assert.NotNull(response.Headers.Location);
 
         var reservation = await response.Content.ReadFromJsonAsync<Reservation>(ApiFixture.JsonOptions);
         Assert.NotNull(reservation);

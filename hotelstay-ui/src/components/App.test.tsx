@@ -91,4 +91,15 @@ describe('App', () => {
     expect(await screen.findByText(/Reservation confirmed/i)).toBeInTheDocument()
     expect(screen.getByText(/HS-12345678/)).toBeInTheDocument()
   })
+
+  it('shows a disabled destination picker and guidance when city loading fails', async () => {
+    mockedApi.fetchCities.mockRejectedValueOnce(new Error('API down'))
+
+    render(<App />)
+
+    expect(await screen.findByText(/Couldn't load cities/i)).toBeInTheDocument()
+    expect(screen.getByRole('combobox', { name: /Destination/i })).toBeDisabled()
+    expect(screen.getByRole('button', { name: /Search/i })).toBeDisabled()
+    expect(screen.getByText(/No destination options are available/i)).toBeInTheDocument()
+  })
 })

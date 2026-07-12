@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore and build API
+        run: dotnet build HotelStay.Api/HotelStay.Api.csproj --configuration Release
+
+      - name: Run API tests
+        run: dotnet test HotelStay.Tests/HotelStay.Tests.csproj --configuration Release --no-restore
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: |
+          cd hotelstay-ui
+          npm ci
+
+      - name: Run frontend tests
+        run: |
+          cd hotelstay-ui
+          npm test -- --run --watch=false

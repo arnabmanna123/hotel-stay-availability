@@ -53,13 +53,17 @@ export function SearchForm({ cities, disabled, onSearch }: Props) {
           <select
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            disabled={disabled}
+            disabled={disabled || cities.length === 0}
           >
-            {cities.map((c) => (
-              <option key={c.name} value={c.name}>
-                {c.name} ({c.class})
-              </option>
-            ))}
+            {cities.length === 0 ? (
+              <option value="">No destination options are available</option>
+            ) : (
+              cities.map((c) => (
+                <option key={c.name} value={c.name}>
+                  {c.name} ({c.class})
+                </option>
+              ))
+            )}
           </select>
         </label>
 
@@ -99,7 +103,7 @@ export function SearchForm({ cities, disabled, onSearch }: Props) {
           </select>
         </label>
 
-        <button type="submit" disabled={!canSubmit}>
+        <button type="submit" disabled={!canSubmit || cities.length === 0}>
           {disabled ? 'Searching…' : 'Search'}
         </button>
       </div>
