@@ -1,4 +1,5 @@
-﻿using HotelStay.Api.Domain;
+﻿using System.Globalization;
+using HotelStay.Api.Domain;
 using HotelStay.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,8 +11,8 @@ public static class SearchEndpoint
     {
         app.MapGet("/hotels/search", async (
             string? destination,
-            DateTime? checkIn,
-            DateTime? checkOut,
+            string? checkIn,
+            string? checkOut,
             RoomType? roomType,
             [FromServices] ICityCatalogue catalog,
             [FromServices] HotelAggregator aggregator,
@@ -22,17 +23,25 @@ public static class SearchEndpoint
                 return Results.BadRequest(new ApiError("destination is required", ErrorCodes.MissingDestination));
             }
 
-            if (!checkIn.HasValue)
+            if (string.IsNullOrWhiteSpace(checkIn))
             {
                 return Results.BadRequest(new ApiError("checkIn is required", ErrorCodes.MissingCheckIn));
             }
 
-            if (!checkOut.HasValue)
+            if (string.IsNullOrWhiteSpace(checkOut))
             {
                 return Results.BadRequest(new ApiError("checkOut is required", ErrorCodes.MissingCheckOut));
             }
 
-            if (checkIn >= checkOut)
+            var parsedCheckIn = DateTime.TryParse(checkIn, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var parsedCheckInDate);
+            var parsedCheckOut = DateTime.TryParse(checkOut, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var parsedCheckOutDate);
+
+            if (!parsedCheckIn || !parsedCheckOut)
+            {
+                return Results.BadRequest(new ApiError("checkIn and checkOut must be valid dates", ErrorCodes.InvalidDates));
+            }
+
+            if (parsedCheckInDate >= parsedCheckOutDate)
             {
                 return Results.BadRequest(new ApiError("checkOut must be after checkIn", ErrorCodes.InvalidDates));
             }
@@ -42,9 +51,9 @@ public static class SearchEndpoint
                 return Results.BadRequest(new ApiError($"Unknown destination: {destination}", ErrorCodes.UnknownDestination));
             }
 
-            var query = new SearchQuery(destination.Trim(), checkIn.Value, checkOut.Value, roomType);
+            var query = new SearchQuery(destination.Trim(), parsedCheckInDate, parsedCheckOutDate, roomType);
             var rooms = await aggregator.SearchAsync(query, cancellationToken);
-            var nights = (checkOut.Value - checkIn.Value).Days;
+            var nights = (parsedCheckOutDate - parsedCheckInDate).Days;
             var currency = rooms.Count > 0 ? rooms[0].Currency : "USD";
 
             return TypedResults.Ok(new { results = rooms, nights, currency });

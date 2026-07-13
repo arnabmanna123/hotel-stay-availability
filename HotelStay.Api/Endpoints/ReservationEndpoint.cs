@@ -111,10 +111,7 @@ public static class ReservationEndpoint
                 ErrorCodes.ValidationFailure));
         }
 
-        return Results.CreatedAtRoute(
-            "GetReservation",
-            new { reference = reservation.Reference },
-            reservation);
+        return TypedResults.Ok(reservation);
     }
 
     private static IResult GetReservation(string reference, IReservationStore store)

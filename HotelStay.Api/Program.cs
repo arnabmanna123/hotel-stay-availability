@@ -41,13 +41,16 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 });
 
 // -- CORS: dev-only, allow any origin so a Vite dev server on :5173 works -----
-builder.Services.AddCors(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.AddDefaultPolicy(policy => policy
-        .AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod());
-});
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policy => policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+    });
+}
 
 var app = builder.Build();
 
