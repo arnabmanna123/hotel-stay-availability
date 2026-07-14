@@ -80,6 +80,18 @@ describe('App', () => {
     expect(screen.getByText(/HS-12345678/)).toBeInTheDocument()
   })
 
+  it('shows search results with room details after a successful search', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: /search/i }))
+
+    expect(await screen.findByRole('heading', { name: /1\s+room\s+found/i })).toBeInTheDocument()
+    expect(screen.getByText('PremierStays')).toBeInTheDocument()
+    expect(screen.getByText(/USD 75.00/i)).toBeInTheDocument()
+    expect(screen.getByText(/USD 150.00/i)).toBeInTheDocument()
+  })
+
   it('looks up an existing reservation by reference', async () => {
     render(<App />)
 
